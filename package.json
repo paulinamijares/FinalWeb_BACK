@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -15,9 +16,10 @@
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "lint": "^1.1.2",
     "morgan": "^1.10.0",
     "mssql": "^11.0.1",
-    "swagger": "^0.7.5",
+    "swagger": "^0.0.1",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
   }
