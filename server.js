@@ -31,7 +31,7 @@ const swaggerOptions = {
         },
         servers: [
             {
-                url: "http://localhost:3000",
+                url: process.env.VITE_API_SERVER || "http://localhost:3000",
                 description: "Local server"
             }
         ],

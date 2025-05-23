@@ -29,6 +29,7 @@ jobs:
           echo "PORT=${{ secrets.PORT }}" >> .env
           echo "ALLOWED_ORIGINS=${{ secrets.ALLOWED_ORIGINS }}" >> .env
           echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
+          echo "VITE_API_SERVER=${{ secrets.VITE_API_SERVER}}" >> .env
 
       - name: Install dependencies
         run: npm ci
