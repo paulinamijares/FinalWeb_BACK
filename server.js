@@ -12,7 +12,7 @@ const loginRoutes = require('./routes/loginRoutes');
 const { login } = require('./controllers/loginController');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Middlewares
 app.use(express.json()); // Para parsear JSON
@@ -31,7 +31,7 @@ const swaggerOptions = {
         },
         servers: [
             {
-                url: process.env.VITE_API_SERVER || "http://localhost:3000",
+                url: process.env.VITE_API_SERVER || "http://localhost:3001",
                 description: "Local server"
             }
         ],
