@@ -4,7 +4,7 @@ on:
   push:
     branches: [master]
     paths:
-      - '**'  # Or specify more narrowly if needed
+      - '**'  # Adjust scope if needed
   workflow_dispatch:
 
 jobs:
@@ -29,13 +29,20 @@ jobs:
           echo "PORT=${{ secrets.PORT }}" >> .env
           echo "ALLOWED_ORIGINS=${{ secrets.ALLOWED_ORIGINS }}" >> .env
           echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
-          echo "VITE_API_SERVER=${{ secrets.VITE_API_SERVER}}" >> .env
+          echo "VITE_API_SERVER=${{ secrets.VITE_API_SERVER }}" >> .env
 
       - name: Install dependencies
         run: npm ci
 
       - name: Lint
         run: npm run lint || echo "Lint failed"
+
+      - name: Clean App Service (Linux)
+        run: |
+          curl -X POST "https://${{ secrets.AZURE_WEBAPP_BACKEND_NAME }}.scm.azurewebsites.net/api/command" \
+          -u "${{ secrets.AZURE_WEBAPP_BACKEND_PUBLISH_PROFILE_SOLUSERPWD }}" \
+          -H "Content-Type: application/json" \
+          --data '{"command": "rm -rf /home/site/wwwroot/*"}'
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
