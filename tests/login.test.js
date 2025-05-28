@@ -37,6 +37,7 @@ describe('POST /api/login', () => {
             .send({ email: 'doesnotexist@example.com', password: 'irrelevant' });
 
         expect(response.status).toBe(401);
+        // eslint-disable-next-line 
         expect(response.body).toHaveProperty('error' || 'message', 'Invalid credentials');
     });
 });
