@@ -9,10 +9,11 @@ const swaggerUi = require('swagger-ui-express');
 const { connectDB } = require('./db');
 const userRoutes = require('./routes/userRoutes');
 const loginRoutes = require('./routes/loginRoutes');
+// eslint-disable-next-line no-unused-vars
 const { login } = require('./controllers/loginController');
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 // Middlewares
 app.use(express.json()); // Para parsear JSON
@@ -31,7 +32,7 @@ const swaggerOptions = {
         },
         servers: [
             {
-                url: process.env.VITE_API_SERVER || "http://localhost:3001",
+                url: process.env.VITE_API_SERVER || "http://localhost:3000",
                 description: "Local server"
             }
         ],

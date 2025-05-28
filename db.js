@@ -1,21 +1,22 @@
-// db.js
 require('dotenv').config();
 const sql = require('mssql');
 
 const config = {
     server: process.env.DB_SERVER,
-    database: process.env.DB_DATABASE, 
+    database: process.env.DB_DATABASE,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     options: {
-        encrypt: true, 
+        encrypt: true,
         trustServerCertificate: true
     }
 };
 
+let pool;
+
 async function connectDB() {
     try {
-        const pool = await sql.connect(config);
+        pool = await sql.connect(config);
         console.log("Conectado a SQL Server!");
         return pool;
     } catch (error) {
@@ -24,4 +25,18 @@ async function connectDB() {
     }
 }
 
-module.exports = { connectDB };
+async function query(sqlQuery) {
+    if (!pool) {
+        await connectDB();
+    }
+    return pool.request().query(sqlQuery);
+}
+
+async function closeDB() {
+    if (pool) {
+        await pool.close();
+        console.log("Conexión cerrada.");
+    }
+}
+
+module.exports = { connectDB, query, closeDB };

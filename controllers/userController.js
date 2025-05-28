@@ -1,6 +1,7 @@
 // controllers/userController.js
 const sql = require('mssql');
 const bcrypt = require('bcryptjs');
+// eslint-disable-next-line no-unused-vars
 const authenticateToken = require('../middlewares/authMiddleware'); 
 require('dotenv').config();
 
