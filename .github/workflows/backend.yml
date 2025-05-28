@@ -37,6 +37,9 @@ jobs:
       - name: Lint
         run: npm run lint || echo "Lint failed"
 
+      - name: Run unit tests
+        run: npm test
+
       - name: Clean App Service (Linux)
         run: |
           curl -X POST "https://${{ secrets.AZURE_WEBAPP_BACKEND_NAME }}.scm.azurewebsites.net/api/command" \
